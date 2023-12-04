@@ -1,0 +1,11 @@
+res://Scripts/UI.gd
+res://Scenes/PauseMenu.tscn
+res://Scripts/PauseMenu.gd
+res://Scenes/World1.tscn
+res://Scenes/Player.tscn
+res://Scenes/Coin.tscn
+res://Scenes/World2.tscn
+res://Scenes/Menu.tscn
+res://Scenes/World3.tscn
+res://Scenes/Saw.tscn
+res://Scripts/Player.gd

@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://xx3uyygsqp0l"]
+
+[ext_resource type="Texture2D" uid="uid://cokws7uofvppg" path="res://Rocky Roads/Enemies/saw.png" id="1_0we58"]
+[ext_resource type="Script" path="res://Scripts/Saw.gd" id="1_yd316"]
+
+[sub_resource type="Animation" id="Animation_r8h26"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_f31gq"]
+resource_name = "RotationSaw"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.5, 363, 365, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ng6gb"]
+_data = {
+"RESET": SubResource("Animation_r8h26"),
+"RotationSaw": SubResource("Animation_f31gq")
+}
+
+[node name="Saw" type="Node2D"]
+script = ExtResource("1_yd316")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0we58")
+hframes = 2
+vframes = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-1.58317, -15.9529, 0.87277, -13.3131, 4, -9, 5.62401, -9.02056, 9.25079, -11.6371, 10.5591, -9.82374, 8, -3, 9, -1, 16.1135, -0.596153, 12.3261, 1.03341, 8, 4, 6, 6, 10.6501, 9.41142, 8.83673, 10.7197, 5.55442, 9.22759, 1, 9, 0.756789, 17.1005, -1.03341, 12.3261, -3, 9, -6, 7, -9.25079, 11.6371, -9.89333, 7.68908, -10, 4, -7, 4, -10, 1, -15.9529, 1.58317, -12.3261, -1.03341, -9, -4, -8, -7, -10.4895, -8.42441, -9.82374, -10.5591, -3, -10, -1.767, -10.8572)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ng6gb")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
